@@ -287,18 +287,26 @@
     font-family:'Quicksand', sans-serif; font-size:.88rem; font-weight:600; letter-spacing:.3px;
     padding:1rem 1.9rem; border-radius:16px; text-decoration:none;
     border:1px solid var(--line); color:var(--paper);
-    display:flex; flex-direction:column; align-items:flex-start; gap:.25rem;
-    transition:all .3s ease; min-width:210px; text-align:left;
+    display:flex; flex-direction:column; align-items:center; gap:.25rem;
+    transition:all .3s ease; min-width:180px; text-align:center;
   }
-  .tg-btn .tg-btn-label{color:#c9b9d3; font-size:.68rem; letter-spacing:1.5px; text-transform:uppercase; font-weight:700;}
-  .tg-btn .tg-btn-url{color:var(--lav-bright); font-weight:700;}
+  .tg-btn .tg-btn-label{
+    color:#c9b9d3; font-size:.68rem; letter-spacing:1.5px; text-transform:uppercase; font-weight:700;
+  }
+  .tg-btn .tg-btn-url{display:none;} /* Hides the URL text */
   .tg-btn:hover{background:var(--lav); border-color:var(--lav); transform:translateY(-3px);}
-  .tg-btn:hover .tg-btn-label, .tg-btn:hover .tg-btn-url{color:#fff;}
+  .tg-btn:hover .tg-btn-label{color:#fff;}
   .tg-btn.primary{background:var(--lav); border-color:var(--lav);}
-  .tg-btn.primary .tg-btn-label, .tg-btn.primary .tg-btn-url{color:#fff;}
+  .tg-btn.primary .tg-btn-label{color:#fff;}
   .tg-btn.red-btn{background:var(--rose); border-color:var(--rose);}
-  .tg-btn.red-btn .tg-btn-label, .tg-btn.red-btn .tg-btn-url{color:#fff;}
+  .tg-btn.red-btn .tg-btn-label{color:#fff;}
   .tg-btn.red-btn:hover{background:var(--rose-bright); border-color:var(--rose-bright);}
+  .tg-btn.insta-btn{background:linear-gradient(135deg,#f58529,#dd2a7b,#8134af,#515bd4); border-color:transparent;}
+  .tg-btn.insta-btn .tg-btn-label{color:#fff;}
+  .tg-btn.insta-btn:hover{filter:brightness(1.1);}
+  .tg-btn.wa-btn{background:#25D366; border-color:#25D366;}
+  .tg-btn.wa-btn .tg-btn-label{color:#0b3d1f;}
+  .tg-btn.wa-btn:hover{background:#3ee07a; border-color:#3ee07a;}
 
   .admin-note{
     position:relative; z-index:1; margin-top:2.4rem;
@@ -354,7 +362,7 @@
   @media (max-width:600px){
     .hero{padding:4rem 1.2rem 4rem;}
     .fx-section{border-radius:36px; padding:5rem 1.4rem; margin:2rem 1rem;}
-    .tg-btn{min-width:170px;}
+    .tg-btn{min-width:150px;}
     footer{flex-direction:column; text-align:center;}
   }
   @media (prefers-reduced-motion: reduce){
@@ -375,10 +383,7 @@
   <div id="splash">
     <div class="glow"></div>
     <div class="video-box" id="videoBox" tabindex="0" role="button" aria-label="Enter site">
-      <!--
-        REPLACE THE src BELOW with Melody's own photo or sigil image.
-        Upload the image file and point src at it, e.g. src="melody.jpg"
-      -->
+      <!-- Replace with your own image -->
       <img id="gateImage" src="REPLACE_WITH_YOUR_IMAGE.jpg" alt="Melody Johnson">
       <div class="ring"></div>
       <div class="play-hint">
@@ -418,202 +423,122 @@
     <div class="id-card-wrap">
       <div class="id-card">
         <div class="id-eyebrow">✨ about melody ✨</div>
-        <p class="bio">CEO of Spiritual Alive. Awaken your spiritual journey 🧿💙🪬🔮 — guiding the community through both inner alignment and verified, profit-driven opportunities.</p>
+        <p class="bio">CEO of Spiritual Alive. Verified guide, community builder, and digital oracle. Blending intuition with opportunity – every link leads to growth.</p>
         <div class="id-meta">
-          <span>🔮 <b>Spiritual Alive</b></span>
-          <span>🧿 <b>Awakening Guide</b></span>
-          <span>💫 <b>Crypto &amp; Web3</b></span>
+          <span><b>📍 Based</b> · Global</span>
+          <span><b>🪬 Mission</b> · Spiritual Alive</span>
+          <span><b>🔮 Vibe</b> · Soft & sharp</span>
         </div>
       </div>
     </div>
 
-    <div class="ticker-strip">
-      <div class="ticker-track left" id="tickerLeft"></div>
-    </div>
+    <!-- Ticker removed for clean look (optional) -->
 
-    <section class="links-section" id="links">
+    <section id="links" class="links-section">
       <div class="tg-glow"></div>
-      <svg class="links-icon" width="86" height="86" viewBox="0 0 32 32" aria-label="Telegram" role="img">
-        <circle cx="16" cy="16" r="16" fill="#8f9ef0"/>
-        <path d="M7.2 15.8L22.6 9.9c.7-.26 1.32.17 1.09 1.22l-2.62 12.35c-.19.87-.7 1.08-1.42.68l-3.94-2.9-1.9 1.83c-.21.21-.39.39-.79.39l.28-4.02 7.32-6.62c.32-.28-.07-.44-.49-.16l-9.05 5.7-3.9-1.22c-.85-.27-.86-.85.18-1.25z" fill="#fff"/>
-      </svg>
-      <h2>Melody Verified Project Discussion Group</h2>
-      <p>Only legit and tested updates: 🔥 Crypto 🔥 Web3 🔥 Degen Calls 🔥 Telegram Bot Airdrops — and many more profit-driven opportunities.</p>
+      <div class="links-icon">🪬</div>
+      <h2>Connect with Melody</h2>
+      <p>Official channels — click to join the journey. No exposed links, just pure intention.</p>
       <div class="tg-links">
-        <a href="https://t.me/Melodyupdatechannel" target="_blank" class="tg-btn primary">
-          <span class="tg-btn-label">💬 Telegram Channel</span>
-          <span class="tg-btn-url">t.me/Melodyupdatechannel</span>
+        <a href="https://t.me/officialmelodyjohnson" target="_blank" class="tg-btn primary">
+          <span class="tg-btn-label">Join Channel</span>
+          <!-- URL hidden -->
         </a>
-        <a href="https://t.me/Officialmelodyjohnson" target="_blank" class="tg-btn red-btn">
-          <span class="tg-btn-label">🌸 Telegram Profile</span>
-          <span class="tg-btn-url">t.me/Officialmelodyjohnson</span>
+        <a href="https://t.me/melodyjohnson" target="_blank" class="tg-btn red-btn">
+          <span class="tg-btn-label">Telegram DM</span>
+        </a>
+        <a href="https://instagram.com/melodyjohnson" target="_blank" class="tg-btn insta-btn">
+          <span class="tg-btn-label">Instagram</span>
+        </a>
+        <a href="https://wa.me/1234567890" target="_blank" class="tg-btn wa-btn">
+          <span class="tg-btn-label">WhatsApp</span>
         </a>
       </div>
       <div class="admin-note">
-        Admin: <b>@officialmelodyjohnson</b> &nbsp;·&nbsp; Assistant: <b>@AnnieAn</b>
-        <span class="warn">⚠ Only trust official admin handles listed here — beware of impersonators.</span>
+        <b>CEO of Spiritual Alive</b> · Project marketer · Nigerian platform pro
+        <span class="warn">⚠️ For ads/promos: DM via Telegram or WhatsApp</span>
       </div>
     </section>
 
-    <div class="ticker-strip">
-      <div class="ticker-track right" id="tickerRight"></div>
-    </div>
-
     <section class="fx-section">
-      <h2>Awaken your <span>spiritual</span> journey 🧿</h2>
-      <p>Alignment within, opportunity without. Only legit, tested updates — never noise.</p>
+      <h2>✨ Awaken <span>your</span> spiritual alive ✨</h2>
+      <p>Guidance, signals, and opportunity — wrapped in light. Trust the journey.</p>
     </section>
 
     <section class="roles-section">
-      <span class="eyebrow">✨ what i do ✨</span>
-      <h2 class="roles-title">Guiding Spiritual Alive, daily</h2>
+      <span class="eyebrow">🪬 vibrations</span>
+      <h2 class="roles-title">Roles & energy</h2>
       <div class="roles">
-        <span class="role-badge">🔮 Spiritual Guide</span>
-        <span class="role-badge">🧿 CEO · Spiritual Alive</span>
-        <span class="role-badge">💫 Crypto &amp; Web3</span>
-        <span class="role-badge">🌙 Degen Calls</span>
-        <span class="role-badge">🌸 Airdrop Updates</span>
+        <span class="role-badge">Guide</span>
+        <span class="role-badge">Community Builder</span>
+        <span class="role-badge">Oracle</span>
+        <span class="role-badge">Digital Alchemist</span>
+        <!-- Removed Degenist -->
       </div>
     </section>
 
     <footer>
-      <span>© Melody Johnson</span>
-      <span>
-        <a href="https://t.me/Melodyupdatechannel" target="_blank">Telegram Channel</a> ·
-        <a href="https://t.me/Officialmelodyjohnson" target="_blank">Telegram Profile</a>
-      </span>
-      <a href="#" class="back-top">Back to top ↑</a>
+      <span>© 2026 Melody Johnson · Spiritual Alive</span>
+      <a href="#" class="back-top">↑ back to top</a>
     </footer>
 
   </div>
 
   <script>
-  document.addEventListener('DOMContentLoaded', function() {
-    const splash = document.getElementById('splash');
-    const main = document.getElementById('mainContent');
-    const watermark = document.getElementById('watermark');
-    const progress = document.getElementById('progress');
-    const videoBox = document.getElementById('videoBox');
-    const flash = document.getElementById('activateFlash');
-    const ring = document.getElementById('shockRing');
+    (function(){
+      const splash = document.getElementById('splash');
+      const mainContent = document.getElementById('mainContent');
+      const flash = document.getElementById('activateFlash');
+      const ring = document.getElementById('shockRing');
+      const progress = document.getElementById('progress');
 
-    const tickerItems = [
-      'SPIRITUAL ALIVE','AWAKEN YOUR JOURNEY','VERIFIED UPDATES','CRYPTO','WEB3','DEGEN CALLS','AIRDROPS','TESTED & LEGIT'
-    ];
-    function buildTicker(el){
-      const frag = document.createDocumentFragment();
-      for(let rep=0; rep<2; rep++){
-        tickerItems.forEach((t,i)=>{
-          const s = document.createElement('span');
-          s.textContent = t;
-          frag.appendChild(s);
-          const d = document.createElement('span');
-          d.className = 'dim';
-          d.textContent = (i % 2 === 0) ? '🧿' : '✨';
-          if(i % 2 === 0) d.classList.add('arrow-red');
-          frag.appendChild(d);
-        });
-      }
-      el.appendChild(frag);
-    }
-    buildTicker(document.getElementById('tickerLeft'));
-    buildTicker(document.getElementById('tickerRight'));
+      // Progress bar on scroll
+      window.addEventListener('scroll', ()=>{
+        const scrollTop = window.scrollY;
+        const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+        const pct = docHeight ? (scrollTop / docHeight) * 100 : 0;
+        progress.style.width = pct + '%';
+      });
 
-    let audioCtx;
-    function playTechSound(){
-      try{
-        audioCtx = audioCtx || new (window.AudioContext || window.webkitAudioContext)();
-        const now = audioCtx.currentTime;
-
-        function blip(startOffset, freqStart, freqEnd, dur, gain){
-          const osc = audioCtx.createOscillator();
-          const g = audioCtx.createGain();
-          osc.type = 'sine';
-          osc.frequency.setValueAtTime(freqStart, now + startOffset);
-          osc.frequency.exponentialRampToValueAtTime(freqEnd, now + startOffset + dur);
-          g.gain.setValueAtTime(0.0001, now + startOffset);
-          g.gain.exponentialRampToValueAtTime(gain, now + startOffset + 0.015);
-          g.gain.exponentialRampToValueAtTime(0.0001, now + startOffset + dur);
-          osc.connect(g);
-          g.connect(audioCtx.destination);
-          osc.start(now + startOffset);
-          osc.stop(now + startOffset + dur + 0.02);
-        }
-        blip(0, 420, 640, 0.11, 0.08);
-        blip(0.13, 700, 1100, 0.18, 0.1);
-
-        const shimmer = audioCtx.createOscillator();
-        const shimmerGain = audioCtx.createGain();
-        shimmer.type = 'triangle';
-        shimmer.frequency.setValueAtTime(1600, now + 0.13);
-        shimmer.frequency.exponentialRampToValueAtTime(2800, now + 0.32);
-        shimmerGain.gain.setValueAtTime(0.0001, now + 0.13);
-        shimmerGain.gain.exponentialRampToValueAtTime(0.018, now + 0.16);
-        shimmerGain.gain.exponentialRampToValueAtTime(0.0001, now + 0.34);
-        shimmer.connect(shimmerGain);
-        shimmerGain.connect(audioCtx.destination);
-        shimmer.start(now + 0.13);
-        shimmer.stop(now + 0.36);
-      }catch(e){ /* audio not available, fail silently */ }
-    }
-
-    let dismissed = false;
-    function dismissSplash(e) {
-      if(dismissed) return;
-      dismissed = true;
-
-      let x = '50%', y = '50%';
-      if(e && e.clientX !== undefined && e.clientX !== 0){
-        x = e.clientX + 'px'; y = e.clientY + 'px';
-      } else {
-        const r = videoBox.getBoundingClientRect();
-        x = (r.left + r.width/2) + 'px'; y = (r.top + r.height/2) + 'px';
-      }
-      flash.style.setProperty('--fx', x);
-      flash.style.setProperty('--fy', y);
-      ring.style.setProperty('--fx', x);
-      ring.style.setProperty('--fy', y);
-
-      playTechSound();
-      flash.classList.add('go');
-      ring.classList.add('go');
-      videoBox.style.transform = 'scale(1.12)';
-      videoBox.style.boxShadow = '0 0 0 1px rgba(183,193,255,0.5), 0 0 90px 24px rgba(143,158,240,0.75), 0 0 160px 55px rgba(239,127,160,0.5)';
-
-      setTimeout(() => {
+      // Splash dismiss with flash and ring
+      function dismissSplash(e) {
+        if (splash.classList.contains('hidden')) return;
+        const rect = splash.getBoundingClientRect();
+        const cx = rect.left + rect.width/2;
+        const cy = rect.top + rect.height/2;
+        document.documentElement.style.setProperty('--fx', cx + 'px');
+        document.documentElement.style.setProperty('--fy', cy + 'px');
+        flash.classList.add('go');
+        ring.classList.add('go');
         splash.classList.add('hidden');
-        setTimeout(() => { main.classList.add('visible'); }, 500);
-      }, 380);
-    }
-    videoBox.addEventListener('click', dismissSplash);
-    videoBox.addEventListener('keydown', function(e){
-      if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); dismissSplash(e); }
-    });
-    videoBox.addEventListener('touchstart', function(e) {
-      e.preventDefault();
-      dismissSplash(e.touches && e.touches[0] ? e.touches[0] : e);
-    }, { passive:false });
+        setTimeout(() => {
+          mainContent.classList.add('visible');
+        }, 400);
+        setTimeout(() => {
+          flash.classList.remove('go');
+          ring.classList.remove('go');
+        }, 1000);
+      }
 
-    document.querySelector('.back-top').addEventListener('click', function(e){
-      e.preventDefault();
-      window.scrollTo({top:0, behavior:'smooth'});
-    });
+      splash.addEventListener('click', dismissSplash);
+      splash.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          dismissSplash(e);
+        }
+      });
 
-    document.getElementById('scrollCue').addEventListener('click', function(e){
-      e.preventDefault();
-      const target = document.getElementById('links');
-      if(target) target.scrollIntoView({ behavior:'smooth' });
-    });
-
-    function onScroll(){
-      const y = window.scrollY;
-      watermark.style.transform = `translate(-50%, calc(-50% + ${y*0.12}px))`;
-      const doc = document.documentElement;
-      const pct = (y / (doc.scrollHeight - doc.clientHeight)) * 100;
-      progress.style.width = pct + '%';
-    }
-    window.addEventListener('scroll', onScroll, { passive:true });
-  });
+      // Scroll cue smoothly to links
+      document.getElementById('scrollCue').addEventListener('click', (e) => {
+        e.preventDefault();
+        document.getElementById('links').scrollIntoView({ behavior: 'smooth' });
+      });
+      // Footer back to top
+      document.querySelector('.back-top').addEventListener('click', (e) => {
+        e.preventDefault();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    })();
   </script>
 
 </body>
