@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Melody Johnson — Spiritual Alive</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,600&family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Dancing+Script:wght@600;700&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#2c1b3d;
+    --plum:#3b2350;
+    --plum-soft:#4a2c63;
+    --paper:#fdf6f8;
+    --paper-dim:#f7e9ee;
+    --rose:#ef7fa0;
+    --rose-bright:#ffa7c1;
+    --rose-deep:#c14e73;
+    --lav:#8f9ef0;
+    --lav-bright:#b7c1ff;
+    --lav-deep:#5b63c9;
+    --mist:#a597ae;
+    --gold:#e9c46a;
+    --line: rgba(143,158,240,0.28);
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Quicksand', sans-serif;
+    background:var(--paper);
+    color:var(--ink);
+    overflow-x:hidden;
+    -webkit-font-smoothing:antialiased;
+  }
+  ::selection{background:var(--rose); color:#fff;}
+
+  #grain{
+    position:fixed; inset:0; z-index:9998; pointer-events:none;
+    opacity:.04; mix-blend-mode:overlay;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  #progress{
+    position:fixed; top:0; left:0; height:3px; width:0%;
+    background:linear-gradient(90deg, var(--rose-deep), var(--rose), var(--lav), var(--lav-bright));
+    z-index:9997; transition:width .08s linear;
+  }
+
+  .sparkle{
+    position:fixed; z-index:1; pointer-events:none; font-size:1.2rem; opacity:.5;
+    animation:twinkle 3.4s ease-in-out infinite;
+  }
+  @keyframes twinkle{0%,100%{opacity:.25; transform:scale(.85);}50%{opacity:.7; transform:scale(1.05);}}
+
+  /* ---------- SPLASH / IMAGE GATE ---------- */
+  #splash{
+    position:fixed; inset:0; width:100vw; height:100vh;
+    background:radial-gradient(120% 120% at 50% 25%, #4a2c63 0%, #2c1b3d 60%, #1c1128 100%);
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    z-index:9999; cursor:pointer;
+    transition:opacity .9s ease, transform .9s ease;
+  }
+  #splash .glow{
+    position:absolute; width:480px; height:480px; border-radius:50%;
+    background:
+      radial-gradient(circle at 35% 40%, rgba(239,127,160,0.28) 0%, rgba(239,127,160,0) 55%),
+      radial-gradient(circle at 65% 60%, rgba(143,158,240,0.28) 0%, rgba(143,158,240,0) 60%);
+    animation:breathe 3.2s ease-in-out infinite;
+  }
+  @keyframes breathe{0%,100%{transform:scale(.92);opacity:.7;}50%{transform:scale(1.08);opacity:1;}}
+
+  .video-box{
+    position:relative;
+    width:min(320px, 78vw);
+    aspect-ratio:1/1;
+    border-radius:50%;
+    overflow:hidden;
+    cursor:pointer;
+    background:#000;
+    border:3px solid rgba(255,255,255,0.5);
+    box-shadow:
+      0 0 0 1px rgba(239,127,160,0.15),
+      0 0 40px 8px rgba(143,158,240,0.45),
+      0 0 90px 24px rgba(239,127,160,0.3);
+    animation:box-pulse 2.6s ease-in-out infinite;
+    transition:transform .35s ease, box-shadow .35s ease;
+  }
+  .video-box:hover{ transform:scale(1.03); }
+  @keyframes box-pulse{
+    0%,100%{ box-shadow:0 0 0 1px rgba(239,127,160,0.15), 0 0 40px 8px rgba(143,158,240,0.45), 0 0 90px 24px rgba(239,127,160,0.3); }
+    50%{ box-shadow:0 0 0 1px rgba(183,193,255,0.25), 0 0 55px 14px rgba(143,158,240,0.65), 0 0 130px 38px rgba(239,127,160,0.42); }
+  }
+  .video-box img{
+    width:100%; height:100%; object-fit:cover; display:block;
+    filter:saturate(1.08) contrast(1.02);
+  }
+  .video-box .ring{
+    position:absolute; inset:-3px; border-radius:50%;
+    border:2px solid transparent;
+    background:conic-gradient(from 0deg, var(--rose-bright), var(--lav-bright), var(--gold), var(--rose-bright)) border-box;
+    -webkit-mask:linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite:xor;
+    mask-composite:exclude;
+    opacity:.95; pointer-events:none;
+    animation:spin 7s linear infinite;
+  }
+  @keyframes spin{ to{ transform:rotate(360deg); } }
+  .video-box .play-hint{
+    position:absolute; inset:0; display:flex; align-items:center; justify-content:center;
+    background:rgba(44,27,61,0.14);
+    pointer-events:none;
+  }
+  .play-hint .play-circle{
+    width:60px; height:60px; border-radius:50%;
+    background:rgba(255,255,255,0.25);
+    border:1px solid rgba(255,255,255,0.7);
+    display:flex; align-items:center; justify-content:center;
+    backdrop-filter:blur(3px);
+    font-size:1.6rem;
+  }
+
+  #splash .prompt{
+    position:relative;
+    font-family:'Dancing Script', cursive;
+    font-size:1.5rem; letter-spacing:.5px;
+    color:var(--rose-bright); font-weight:700; margin-top:1.8rem; margin-bottom:.3rem;
+    animation:pulse 2s infinite;
+  }
+  #splash .prompt-sub{
+    font-family:'Quicksand', sans-serif; font-size:.72rem; letter-spacing:3px;
+    color:var(--mist); text-transform:uppercase; font-weight:600;
+  }
+  @keyframes pulse{0%,100%{opacity:.55;}50%{opacity:1;}}
+  #splash.hidden{opacity:0; transform:scale(1.08); pointer-events:none;}
+
+  .activate-flash{
+    position:fixed; inset:0; z-index:10000; pointer-events:none;
+    background:radial-gradient(circle at var(--fx,50%) var(--fy,50%), rgba(183,193,255,0.85) 0%, rgba(239,127,160,0.5) 24%, rgba(239,127,160,0) 60%);
+    opacity:0;
+  }
+  .activate-flash.go{ animation:flash-out .8s ease-out forwards; }
+  @keyframes flash-out{ 0%{opacity:0;} 15%{opacity:1;} 100%{opacity:0;} }
+  .shock-ring{
+    position:fixed; z-index:10001; pointer-events:none;
+    left:var(--fx,50%); top:var(--fy,50%);
+    width:10px; height:10px; border-radius:50%;
+    border:2px solid var(--lav-bright);
+    transform:translate(-50%,-50%);
+    opacity:0;
+  }
+  .shock-ring.go{ animation:ring-out .9s cubic-bezier(.2,.7,.3,1) forwards; }
+  @keyframes ring-out{ 0%{ width:10px; height:10px; opacity:1; } 100%{ width:2600px; height:2600px; opacity:0; } }
+
+  /* ---------- MAIN ---------- */
+  .main-content{
+    opacity:0; transform:translateY(30px);
+    transition:opacity 1s ease, transform 1s ease;
+  }
+  .main-content.visible{opacity:1; transform:translateY(0);}
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative; background:linear-gradient(180deg, var(--paper) 0%, var(--paper-dim) 100%);
+    padding:5.5rem 2rem 6rem;
+    text-align:center; overflow:hidden;
+  }
+  .hero .watermark{
+    position:absolute; top:34%; left:50%; transform:translate(-50%,-50%);
+    font-family:'Playfair Display', serif; font-weight:700; font-style:italic;
+    font-size:min(20vw, 260px);
+    color:rgba(239,127,160,0.08);
+    letter-spacing:2px;
+    z-index:0; user-select:none; pointer-events:none;
+    white-space:nowrap;
+  }
+  .hero .corner-tri{
+    position:absolute; top:-18%; left:-10%; width:320px; height:320px;
+    background:linear-gradient(135deg, var(--rose-bright) 0%, var(--lav-bright) 100%);
+    border-radius:50%; filter:blur(4px);
+    opacity:.55; z-index:0;
+  }
+  .hero-inner{position:relative; z-index:1; max-width:900px; margin:0 auto;}
+  .verified-row{
+    display:flex; align-items:center; justify-content:center; gap:1.1rem;
+    flex-wrap:wrap; margin-bottom:1.6rem;
+  }
+  .eyebrow{
+    font-family:'Quicksand', sans-serif; font-size:.78rem; letter-spacing:3px; font-weight:700;
+    text-transform:uppercase; color:var(--rose-deep); margin-bottom:1rem; display:block;
+  }
+  .live-dot{display:inline-block; width:7px; height:7px; border-radius:50%; background:var(--lav); margin-right:.5rem; animation:blip 1.6s ease-in-out infinite;}
+  @keyframes blip{0%,100%{opacity:1; box-shadow:0 0 0 0 rgba(143,158,240,.5);} 50%{opacity:.5; box-shadow:0 0 0 5px rgba(143,158,240,0);}}
+  .hero-title{
+    font-family:'Playfair Display', serif; font-weight:700; font-style:italic;
+    font-size:clamp(2.4rem, 7.6vw, 5rem);
+    line-height:1.08; letter-spacing:0px; color:var(--plum);
+  }
+  .hero-title .accent{
+    background:linear-gradient(90deg, var(--rose-deep), var(--rose-bright));
+    -webkit-background-clip:text; background-clip:text; color:transparent;
+  }
+  .hero-title .accent2{
+    background:linear-gradient(90deg, var(--lav-deep), var(--lav-bright));
+    -webkit-background-clip:text; background-clip:text; color:transparent;
+  }
+  .hero-script{
+    font-family:'Dancing Script', cursive; font-size:1.6rem; font-weight:700;
+    color:var(--rose-deep); margin-top:.2rem;
+  }
+  .hero-handle{
+    margin-top:.9rem; font-family:'Quicksand', sans-serif; font-size:1rem; font-weight:600;
+    color:var(--lav-deep); letter-spacing:.5px;
+  }
+  .hero-sub{
+    margin-top:1.4rem; font-size:1.08rem; color:#7a6a86; font-weight:500;
+    max-width:560px; margin-left:auto; margin-right:auto;
+  }
+  .hero-manifesto{
+    margin-top:2.2rem; font-family:'Cormorant Garamond', serif; font-style:italic; font-size:1.25rem;
+    letter-spacing:.3px; color:var(--rose-deep); font-weight:600;
+    max-width:560px; margin-left:auto; margin-right:auto; line-height:1.6;
+  }
+  .scroll-cue{
+    margin-top:2.6rem; width:44px; height:44px; border-radius:50%;
+    background:linear-gradient(135deg, var(--rose), var(--lav)); color:#fff; display:inline-flex;
+    align-items:center; justify-content:center; font-size:1.15rem; text-decoration:none;
+    box-shadow:0 8px 24px rgba(143,158,240,0.4);
+    animation:bob 2.2s ease-in-out infinite;
+  }
+  @keyframes bob{0%,100%{transform:translateY(0);}50%{transform:translateY(8px);}}
+
+  /* ---------- ID CARD ---------- */
+  .id-card-wrap{background:var(--paper-dim); padding:0 2rem 5rem; display:flex; justify-content:center;}
+  .id-card{
+    position:relative; max-width:640px; width:100%; background:#fff;
+    border:1px solid var(--line); text-align:left; padding:2.4rem 2.6rem;
+    border-radius:26px 26px 26px 4px;
+    box-shadow:0 20px 44px rgba(143,158,240,0.16);
+  }
+  .id-card .id-eyebrow{
+    font-family:'Dancing Script', cursive; font-size:1.3rem; font-weight:700;
+    color:var(--rose-deep); margin-bottom:.6rem;
+  }
+  .id-card p.bio{font-family:'Cormorant Garamond', serif; font-size:1.2rem; line-height:1.6; color:var(--plum); margin-bottom:1.4rem;}
+  .id-meta{display:flex; flex-wrap:wrap; gap:1rem 2rem; font-family:'Quicksand', sans-serif; font-size:.82rem; font-weight:600; color:var(--mist);}
+  .id-meta span b{color:var(--plum); font-weight:700;}
+
+  /* ---------- TICKER ---------- */
+  .ticker-strip{
+    background:var(--plum); border-top:1px solid var(--line); border-bottom:1px solid var(--line);
+    overflow:hidden; white-space:nowrap; padding:.9rem 0;
+  }
+  .ticker-track{display:inline-flex;}
+  .ticker-track.left{animation:scroll-left 30s linear infinite;}
+  .ticker-track.right{animation:scroll-right 34s linear infinite;}
+  .ticker-track span{
+    font-family:'Quicksand', sans-serif; font-size:.85rem; letter-spacing:1.5px; font-weight:700;
+    color:var(--lav-bright); padding:0 1.6rem; text-transform:uppercase;
+    display:inline-flex; align-items:center; gap:.4rem;
+  }
+  .ticker-track span.dim{color:var(--mist);}
+  .arrow-red{color:var(--rose-bright);}
+  @keyframes scroll-left{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+  @keyframes scroll-right{from{transform:translateX(-50%);}to{transform:translateX(0);}}
+
+  /* ---------- LINKS SECTION ---------- */
+  .links-section{
+    background:linear-gradient(160deg, var(--plum) 0%, var(--plum-soft) 100%); color:var(--paper); padding:6rem 2rem; text-align:center;
+    position:relative; overflow:hidden;
+  }
+  .links-section .tg-glow{
+    position:absolute; top:-120px; left:50%; transform:translateX(-50%);
+    width:520px; height:520px; border-radius:50%;
+    background:
+      radial-gradient(circle at 35% 40%, rgba(239,127,160,0.22) 0%, rgba(239,127,160,0) 55%),
+      radial-gradient(circle at 65% 60%, rgba(143,158,240,0.24) 0%, rgba(143,158,240,0) 60%);
+  }
+  .links-icon{position:relative; z-index:1; margin-bottom:1.6rem;}
+  .links-section h2{
+    position:relative; z-index:1;
+    font-family:'Playfair Display', serif; font-weight:700; font-style:italic; font-size:clamp(1.9rem, 5vw, 3rem);
+    letter-spacing:.3px; margin-bottom:.8rem;
+  }
+  .links-section p{position:relative; z-index:1; color:#d8cbe0; font-weight:500; max-width:520px; margin:0 auto 2.6rem;}
+  .tg-links{position:relative; z-index:1; display:flex; flex-wrap:wrap; justify-content:center; gap:1rem;}
+  .tg-btn{
+    font-family:'Quicksand', sans-serif; font-size:.88rem; font-weight:600; letter-spacing:.3px;
+    padding:1rem 1.9rem; border-radius:16px; text-decoration:none;
+    border:1px solid var(--line); color:var(--paper);
+    display:flex; flex-direction:column; align-items:flex-start; gap:.25rem;
+    transition:all .3s ease; min-width:210px; text-align:left;
+  }
+  .tg-btn .tg-btn-label{color:#c9b9d3; font-size:.68rem; letter-spacing:1.5px; text-transform:uppercase; font-weight:700;}
+  .tg-btn .tg-btn-url{color:var(--lav-bright); font-weight:700;}
+  .tg-btn:hover{background:var(--lav); border-color:var(--lav); transform:translateY(-3px);}
+  .tg-btn:hover .tg-btn-label, .tg-btn:hover .tg-btn-url{color:#fff;}
+  .tg-btn.primary{background:var(--lav); border-color:var(--lav);}
+  .tg-btn.primary .tg-btn-label, .tg-btn.primary .tg-btn-url{color:#fff;}
+  .tg-btn.red-btn{background:var(--rose); border-color:var(--rose);}
+  .tg-btn.red-btn .tg-btn-label, .tg-btn.red-btn .tg-btn-url{color:#fff;}
+  .tg-btn.red-btn:hover{background:var(--rose-bright); border-color:var(--rose-bright);}
+
+  .admin-note{
+    position:relative; z-index:1; margin-top:2.4rem;
+    font-family:'Quicksand', sans-serif; font-size:.82rem; font-weight:600; color:#c9b9d3;
+    letter-spacing:.3px;
+  }
+  .admin-note b{color:var(--lav-bright);}
+  .admin-note .warn{display:block; margin-top:.6rem; color:var(--rose-bright); font-size:.76rem; letter-spacing:.5px;}
+
+  /* ---------- MANIFESTO STATEMENT ---------- */
+  .fx-section{
+    position:relative; background:linear-gradient(120deg, var(--rose-deep) 0%, var(--rose) 45%, var(--lav) 100%);
+    color:#fff; padding:7rem 2rem; text-align:center;
+    border-radius:60px;
+    margin:3rem 1.5rem; overflow:hidden;
+  }
+  .fx-section h2{
+    font-family:'Playfair Display', serif; font-weight:700; font-style:italic;
+    font-size:clamp(1.9rem, 5vw, 3.2rem); letter-spacing:.3px; line-height:1.25;
+  }
+  .fx-section h2 span{color:#fff; text-decoration:underline; text-decoration-color:rgba(255,255,255,.5); text-underline-offset:6px;}
+  .fx-section p{
+    margin-top:1.2rem; font-family:'Cormorant Garamond', serif; font-style:italic; font-size:1.2rem; color:rgba(255,255,255,0.92);
+    max-width:500px; margin-left:auto; margin-right:auto;
+  }
+
+  /* ---------- ROLES ---------- */
+  .roles-section{background:var(--paper); padding:6rem 2rem 6rem; text-align:center;}
+  .roles-section .eyebrow{display:block; text-align:center;}
+  .roles-title{font-family:'Playfair Display', serif; font-weight:700; font-style:italic; font-size:clamp(1.5rem,3.8vw,2.3rem); margin-bottom:2.6rem; color:var(--plum);}
+  .roles{display:flex; flex-wrap:wrap; justify-content:center; gap:1rem 1.2rem;}
+  .role-badge{
+    position:relative; overflow:hidden;
+    font-family:'Quicksand', sans-serif; font-weight:700;
+    border:1.5px solid var(--lav-bright); border-radius:999px;
+    padding:.8rem 1.6rem; font-size:.82rem; letter-spacing:.5px;
+    color:var(--plum); background:#fff;
+    transition:color .3s ease, border-color .3s ease, transform .3s ease, background .3s ease;
+    cursor:default;
+  }
+  .role-badge:hover{color:#fff; border-color:var(--rose); transform:translateY(-4px); background:linear-gradient(135deg, var(--rose), var(--lav));}
+
+  /* ---------- FOOTER ---------- */
+  footer{
+    background:var(--plum); color:var(--mist); padding:2rem 2rem;
+    display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem;
+    font-family:'Quicksand', sans-serif; font-size:.85rem; font-weight:600; letter-spacing:.3px;
+  }
+  footer a{color:var(--lav-bright); text-decoration:none;}
+  footer .back-top{border:1px solid var(--line); padding:.5rem 1.1rem; border-radius:999px; color:var(--paper); text-decoration:none;}
+  footer .back-top:hover{background:var(--rose); color:#fff; border-color:var(--rose);}
+
+  @media (max-width:600px){
+    .hero{padding:4rem 1.2rem 4rem;}
+    .fx-section{border-radius:36px; padding:5rem 1.4rem; margin:2rem 1rem;}
+    .tg-btn{min-width:170px;}
+    footer{flex-direction:column; text-align:center;}
+  }
+  @media (prefers-reduced-motion: reduce){
+    *{animation-duration:.001ms !important; animation-iteration-count:1 !important; transition-duration:.001ms !important;}
+  }
+</style>
+</head>
+<body>
+
+  <div id="grain"></div>
+  <div id="progress"></div>
+  <span class="sparkle" style="top:12%; left:8%;">✨</span>
+  <span class="sparkle" style="top:22%; right:10%; animation-delay:1.1s;">🌸</span>
+  <span class="sparkle" style="top:60%; left:6%; animation-delay:2s;">💫</span>
+  <span class="sparkle" style="top:70%; right:8%; animation-delay:.6s;">🌙</span>
+
+  <!-- SPLASH / IMAGE GATE -->
+  <div id="splash">
+    <div class="glow"></div>
+    <div class="video-box" id="videoBox" tabindex="0" role="button" aria-label="Enter site">
+      <!--
+        REPLACE THE src BELOW with Melody's own photo or sigil image.
+        Upload the image file and point src at it, e.g. src="melody.jpg"
+      -->
+      <img id="gateImage" src="REPLACE_WITH_YOUR_IMAGE.jpg" alt="Melody Johnson">
+      <div class="ring"></div>
+      <div class="play-hint">
+        <div class="play-circle">🧿</div>
+      </div>
+    </div>
+    <div class="prompt">tap to enter ✨</div>
+    <div class="prompt-sub">Melody Johnson · Spiritual Alive</div>
+  </div>
+
+  <div class="activate-flash" id="activateFlash"></div>
+  <div class="shock-ring" id="shockRing"></div>
+
+  <!-- MAIN CONTENT -->
+  <div class="main-content" id="mainContent">
+
+    <section class="hero">
+      <span class="watermark" id="watermark">Melody</span>
+      <div class="corner-tri"></div>
+      <div class="hero-inner">
+        <span class="eyebrow"><span class="live-dot"></span>✨ Verified Spiritual Guide ✨</span>
+        <div class="verified-row">
+          <svg width="38" height="38" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Verified" role="img">
+            <circle cx="22" cy="22" r="21" fill="#8f9ef0"/>
+            <path d="M14 22.5L19.5 28L30 16" stroke="#ffffff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          </svg>
+        </div>
+        <h1 class="hero-title">Melody <span class="accent">John</span><span class="accent2">son</span></h1>
+        <div class="hero-script">🧿 Spiritual Alive 🔮</div>
+        <div class="hero-handle">@officialmelodyjohnson &nbsp;·&nbsp; CEO, Spiritual Alive</div>
+        <p class="hero-sub">CEO of Spiritual Alive 🧿💙🪬🔮 — awaken your spiritual journey.</p>
+        <p class="hero-manifesto">"Awaken. Align. Blossom." 🌸<br>Spiritual guidance meets verified opportunity — soft on the soul, sharp on the signals.</p>
+        <a href="#links" class="scroll-cue" id="scrollCue">↓</a>
+      </div>
+    </section>
+
+    <div class="id-card-wrap">
+      <div class="id-card">
+        <div class="id-eyebrow">✨ about melody ✨</div>
+        <p class="bio">CEO of Spiritual Alive. Awaken your spiritual journey 🧿💙🪬🔮 — guiding the community through both inner alignment and verified, profit-driven opportunities.</p>
+        <div class="id-meta">
+          <span>🔮 <b>Spiritual Alive</b></span>
+          <span>🧿 <b>Awakening Guide</b></span>
+          <span>💫 <b>Crypto &amp; Web3</b></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="ticker-strip">
+      <div class="ticker-track left" id="tickerLeft"></div>
+    </div>
+
+    <section class="links-section" id="links">
+      <div class="tg-glow"></div>
+      <svg class="links-icon" width="86" height="86" viewBox="0 0 32 32" aria-label="Telegram" role="img">
+        <circle cx="16" cy="16" r="16" fill="#8f9ef0"/>
+        <path d="M7.2 15.8L22.6 9.9c.7-.26 1.32.17 1.09 1.22l-2.62 12.35c-.19.87-.7 1.08-1.42.68l-3.94-2.9-1.9 1.83c-.21.21-.39.39-.79.39l.28-4.02 7.32-6.62c.32-.28-.07-.44-.49-.16l-9.05 5.7-3.9-1.22c-.85-.27-.86-.85.18-1.25z" fill="#fff"/>
+      </svg>
+      <h2>Melody Verified Project Discussion Group</h2>
+      <p>Only legit and tested updates: 🔥 Crypto 🔥 Web3 🔥 Degen Calls 🔥 Telegram Bot Airdrops — and many more profit-driven opportunities.</p>
+      <div class="tg-links">
+        <a href="https://t.me/Melodyupdatechannel" target="_blank" class="tg-btn primary">
+          <span class="tg-btn-label">💬 Telegram Channel</span>
+          <span class="tg-btn-url">t.me/Melodyupdatechannel</span>
+        </a>
+        <a href="https://t.me/Officialmelodyjohnson" target="_blank" class="tg-btn red-btn">
+          <span class="tg-btn-label">🌸 Telegram Profile</span>
+          <span class="tg-btn-url">t.me/Officialmelodyjohnson</span>
+        </a>
+      </div>
+      <div class="admin-note">
+        Admin: <b>@officialmelodyjohnson</b> &nbsp;·&nbsp; Assistant: <b>@AnnieAn</b>
+        <span class="warn">⚠ Only trust official admin handles listed here — beware of impersonators.</span>
+      </div>
+    </section>
+
+    <div class="ticker-strip">
+      <div class="ticker-track right" id="tickerRight"></div>
+    </div>
+
+    <section class="fx-section">
+      <h2>Awaken your <span>spiritual</span> journey 🧿</h2>
+      <p>Alignment within, opportunity without. Only legit, tested updates — never noise.</p>
+    </section>
+
+    <section class="roles-section">
+      <span class="eyebrow">✨ what i do ✨</span>
+      <h2 class="roles-title">Guiding Spiritual Alive, daily</h2>
+      <div class="roles">
+        <span class="role-badge">🔮 Spiritual Guide</span>
+        <span class="role-badge">🧿 CEO · Spiritual Alive</span>
+        <span class="role-badge">💫 Crypto &amp; Web3</span>
+        <span class="role-badge">🌙 Degen Calls</span>
+        <span class="role-badge">🌸 Airdrop Updates</span>
+      </div>
+    </section>
+
+    <footer>
+      <span>© Melody Johnson</span>
+      <span>
+        <a href="https://t.me/Melodyupdatechannel" target="_blank">Telegram Channel</a> ·
+        <a href="https://t.me/Officialmelodyjohnson" target="_blank">Telegram Profile</a>
+      </span>
+      <a href="#" class="back-top">Back to top ↑</a>
+    </footer>
+
+  </div>
+
+  <script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const splash = document.getElementById('splash');
+    const main = document.getElementById('mainContent');
+    const watermark = document.getElementById('watermark');
+    const progress = document.getElementById('progress');
+    const videoBox = document.getElementById('videoBox');
+    const flash = document.getElementById('activateFlash');
+    const ring = document.getElementById('shockRing');
+
+    const tickerItems = [
+      'SPIRITUAL ALIVE','AWAKEN YOUR JOURNEY','VERIFIED UPDATES','CRYPTO','WEB3','DEGEN CALLS','AIRDROPS','TESTED & LEGIT'
+    ];
+    function buildTicker(el){
+      const frag = document.createDocumentFragment();
+      for(let rep=0; rep<2; rep++){
+        tickerItems.forEach((t,i)=>{
+          const s = document.createElement('span');
+          s.textContent = t;
+          frag.appendChild(s);
+          const d = document.createElement('span');
+          d.className = 'dim';
+          d.textContent = (i % 2 === 0) ? '🧿' : '✨';
+          if(i % 2 === 0) d.classList.add('arrow-red');
+          frag.appendChild(d);
+        });
+      }
+      el.appendChild(frag);
+    }
+    buildTicker(document.getElementById('tickerLeft'));
+    buildTicker(document.getElementById('tickerRight'));
+
+    let audioCtx;
+    function playTechSound(){
+      try{
+        audioCtx = audioCtx || new (window.AudioContext || window.webkitAudioContext)();
+        const now = audioCtx.currentTime;
+
+        function blip(startOffset, freqStart, freqEnd, dur, gain){
+          const osc = audioCtx.createOscillator();
+          const g = audioCtx.createGain();
+          osc.type = 'sine';
+          osc.frequency.setValueAtTime(freqStart, now + startOffset);
+          osc.frequency.exponentialRampToValueAtTime(freqEnd, now + startOffset + dur);
+          g.gain.setValueAtTime(0.0001, now + startOffset);
+          g.gain.exponentialRampToValueAtTime(gain, now + startOffset + 0.015);
+          g.gain.exponentialRampToValueAtTime(0.0001, now + startOffset + dur);
+          osc.connect(g);
+          g.connect(audioCtx.destination);
+          osc.start(now + startOffset);
+          osc.stop(now + startOffset + dur + 0.02);
+        }
+        blip(0, 420, 640, 0.11, 0.08);
+        blip(0.13, 700, 1100, 0.18, 0.1);
+
+        const shimmer = audioCtx.createOscillator();
+        const shimmerGain = audioCtx.createGain();
+        shimmer.type = 'triangle';
+        shimmer.frequency.setValueAtTime(1600, now + 0.13);
+        shimmer.frequency.exponentialRampToValueAtTime(2800, now + 0.32);
+        shimmerGain.gain.setValueAtTime(0.0001, now + 0.13);
+        shimmerGain.gain.exponentialRampToValueAtTime(0.018, now + 0.16);
+        shimmerGain.gain.exponentialRampToValueAtTime(0.0001, now + 0.34);
+        shimmer.connect(shimmerGain);
+        shimmerGain.connect(audioCtx.destination);
+        shimmer.start(now + 0.13);
+        shimmer.stop(now + 0.36);
+      }catch(e){ /* audio not available, fail silently */ }
+    }
+
+    let dismissed = false;
+    function dismissSplash(e) {
+      if(dismissed) return;
+      dismissed = true;
+
+      let x = '50%', y = '50%';
+      if(e && e.clientX !== undefined && e.clientX !== 0){
+        x = e.clientX + 'px'; y = e.clientY + 'px';
+      } else {
+        const r = videoBox.getBoundingClientRect();
+        x = (r.left + r.width/2) + 'px'; y = (r.top + r.height/2) + 'px';
+      }
+      flash.style.setProperty('--fx', x);
+      flash.style.setProperty('--fy', y);
+      ring.style.setProperty('--fx', x);
+      ring.style.setProperty('--fy', y);
+
+      playTechSound();
+      flash.classList.add('go');
+      ring.classList.add('go');
+      videoBox.style.transform = 'scale(1.12)';
+      videoBox.style.boxShadow = '0 0 0 1px rgba(183,193,255,0.5), 0 0 90px 24px rgba(143,158,240,0.75), 0 0 160px 55px rgba(239,127,160,0.5)';
+
+      setTimeout(() => {
+        splash.classList.add('hidden');
+        setTimeout(() => { main.classList.add('visible'); }, 500);
+      }, 380);
+    }
+    videoBox.addEventListener('click', dismissSplash);
+    videoBox.addEventListener('keydown', function(e){
+      if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); dismissSplash(e); }
+    });
+    videoBox.addEventListener('touchstart', function(e) {
+      e.preventDefault();
+      dismissSplash(e.touches && e.touches[0] ? e.touches[0] : e);
+    }, { passive:false });
+
+    document.querySelector('.back-top').addEventListener('click', function(e){
+      e.preventDefault();
+      window.scrollTo({top:0, behavior:'smooth'});
+    });
+
+    document.getElementById('scrollCue').addEventListener('click', function(e){
+      e.preventDefault();
+      const target = document.getElementById('links');
+      if(target) target.scrollIntoView({ behavior:'smooth' });
+    });
+
+    function onScroll(){
+      const y = window.scrollY;
+      watermark.style.transform = `translate(-50%, calc(-50% + ${y*0.12}px))`;
+      const doc = document.documentElement;
+      const pct = (y / (doc.scrollHeight - doc.clientHeight)) * 100;
+      progress.style.width = pct + '%';
+    }
+    window.addEventListener('scroll', onScroll, { passive:true });
+  });
+  </script>
+
+</body>
+</html>
